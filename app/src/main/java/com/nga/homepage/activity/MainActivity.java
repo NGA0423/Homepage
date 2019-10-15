@@ -1,10 +1,9 @@
 package com.nga.homepage.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.nga.homepage.R;
 

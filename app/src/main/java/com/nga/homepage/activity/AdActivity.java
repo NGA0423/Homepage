@@ -3,27 +3,48 @@ package com.nga.homepage.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import com.nga.homepage.R;
 
 public class AdActivity extends AppCompatActivity {
     TextView tv_acount;
+
+    Thread thread;
+
+   // boolean isStop=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad);
 
-        tv_acount = findViewById(R.id.tv_acount);
 
-        new Thread(new Runnable() {
+
+        tv_acount = findViewById(R.id.tv_acount);
+        tv_acount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdActivity.this,MainActivity.class));
+                /*if(thread!=null) {
+                    thread.stop();
+                }*/
+                //isStop=true;
+                finish();
+            }
+        });
+
+        thread =new Thread(new Runnable() {
             @Override
             public void run() {
                 for (int i=5;i>=0;i--){
+                    /*if(isStop){
+                        return;
+                    }*/
                     SystemClock.sleep(1000);
                     final int count=i;
                     runOnUiThread(new Runnable() {
@@ -43,7 +64,8 @@ public class AdActivity extends AppCompatActivity {
                });
 
             }
-        }).start();
+        });
+        thread.start();
 
 
 
