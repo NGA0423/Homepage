@@ -12,8 +12,12 @@ import android.widget.TextView;
 
 import com.nga.homepage.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class AdActivity extends AppCompatActivity {
-    TextView tv_acount;
+    @BindView(R.id.tv_acount)
+            TextView tv_acount;
 
     Thread thread;
 
@@ -22,10 +26,9 @@ public class AdActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad);
+        //绑定activi
+        ButterKnife.bind(this);
 
-
-
-        tv_acount = findViewById(R.id.tv_acount);
         tv_acount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,9 +69,6 @@ public class AdActivity extends AppCompatActivity {
             }
         });
         thread.start();
-
-
-
     }
 
 }
