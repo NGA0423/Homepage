@@ -44,11 +44,12 @@ public class HomeFragment extends Fragment {
             public void onRefresh() {
                 refresh.setRefreshing(false);
                 webView.loadUrl("https://www.apple.com/");
-
             }
         });
+
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setJavaScriptEnabled(true);
+
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -56,6 +57,6 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
-
+        webView.loadUrl("https://www.apple.com/");
     }
 }
