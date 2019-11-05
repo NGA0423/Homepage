@@ -3,14 +3,14 @@ package com.nga.homepage.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.textclassifier.TextSelection;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nga.homepage.R;
 import com.nga.homepage.bean.LoginResponse;
-
-import org.jetbrains.annotations.NotNull;
+import com.nga.homepage.bean.SpTools;
 
 import java.io.IOException;
 
@@ -29,6 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
     EditText et_usersname;
     @BindView(R.id.et_pwd)
     EditText et_pwd;
+    @BindView(R.id.bt_longding)
+    Button bt_longding;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,11 +59,27 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
                 Gson gson = new Gson();
-                LoginResponse loginResponse = gson.fromJson(json, LoginResponse.class);
+                final LoginResponse loginResponse = gson.fromJson(json, LoginResponse.class);
+                //处理登录逻辑
+                if(loginResponse.getStatus()==0){
+                    SpTools.putBoolean("isLogni",true);
+                    //登录成功
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
 
-                String msg = loginResponse.getMsg();
-                String uname = loginResponse.getData().getUname();
-
+                            Toast.makeText(RegisterActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    finish();
+                }else{
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(RegisterActivity.this,loginResponse.getStatus(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
 /*
