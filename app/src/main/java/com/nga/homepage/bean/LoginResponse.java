@@ -1,7 +1,5 @@
 package com.nga.homepage.bean;
 
-import android.provider.ContactsContract;
-
 public class LoginResponse {
     private int status;
     private String msg;

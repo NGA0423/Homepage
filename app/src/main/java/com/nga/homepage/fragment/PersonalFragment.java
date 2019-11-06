@@ -47,9 +47,10 @@ public class PersonalFragment extends Fragment {
     void login(){
         boolean isLogni = SpTools.getBoolean("isLogni", false);
         if (isLogni){
-            onResume();
-            SpTools.putBoolean("isLogni",true);
+
+            SpTools.putBoolean("isLogni",false);
             Toast.makeText(getActivity(),"退出登录成功",Toast.LENGTH_SHORT).show();
+            onResume();
             //做退出登录操作
         }else{
             startActivity(new Intent(getActivity(), RegisterActivity.class));

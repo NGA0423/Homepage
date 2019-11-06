@@ -20,6 +20,7 @@ public class SpTools {
     public static void putLong(String key,long defValue){
         SharedPreferences.Editor edit = getEdit();
         edit.putLong(key,defValue);
+        edit.apply();
     }
     public static long getLong(String key,long defValue){
         SharedPreferences sharedPreferences = getSharedPreferences();
@@ -28,6 +29,7 @@ public class SpTools {
     public static void putBoolean(String key,boolean defValue){
         SharedPreferences.Editor edit = getEdit();
         edit.putBoolean(key,defValue);
+        edit.apply();
     }
         public static boolean getBoolean(String key,boolean defValue){
         SharedPreferences sharedPreferences = getSharedPreferences();
@@ -37,6 +39,7 @@ public class SpTools {
     public static void putInt(String key,int defValue){
         SharedPreferences.Editor edit = getEdit();
         edit.putInt(key,defValue);
+        edit.apply();
     }
 
     public static int getInt(String key,int defValue){
@@ -47,6 +50,7 @@ public class SpTools {
     public static void putFloat(String key,float defValue){
         SharedPreferences.Editor edit = getEdit();
         edit.putFloat(key,defValue);
+        edit.apply();
     }
 
     public static float getFloat(String key,float defValue){

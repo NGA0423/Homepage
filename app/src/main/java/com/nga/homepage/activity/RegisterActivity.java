@@ -29,8 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText et_usersname;
     @BindView(R.id.et_pwd)
     EditText et_pwd;
-    @BindView(R.id.bt_longding)
-    Button bt_longding;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +40,11 @@ public class RegisterActivity extends AppCompatActivity {
     void login(){
         String usersname = et_usersname.getText().toString();
         String pwd = et_pwd.getText().toString();
-        String url="http://10.10.16.65:8089/MobileShop";
+        String url="http://169.254.138.146:8089/MobileShop/member/login2";
+
         //OkHttpClient build = new OkHttpClient.Builder().build();
-        OkHttpClient httpClient = new OkHttpClient.Builder().build();
+        
+       /* OkHttpClient httpClient = new OkHttpClient.Builder().build();
         FormBody body = new FormBody.Builder()
                 .add("input", usersname)
                 .add("password", pwd)
@@ -54,12 +55,14 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
 
             }
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String json = response.body().string();
                 Gson gson = new Gson();
                 final LoginResponse loginResponse = gson.fromJson(json, LoginResponse.class);
+*//*
+                final LoginResponse loginResponse = gson.fromJson(json, LoginResponse.class);
+*//*
                 //处理登录逻辑
                 if(loginResponse.getStatus()==0){
                     SpTools.putBoolean("isLogni",true);
@@ -81,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 }
             }
-        });
+        });*/
 /*
         new Thread(){
             @Override
