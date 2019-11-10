@@ -1,5 +1,6 @@
 package com.nga.homepage.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,9 @@ import com.google.gson.Gson;
 import com.nga.homepage.R;
 import com.nga.homepage.bean.LoginResponse;
 import com.nga.homepage.bean.SpTools;
+import com.nga.homepage.fragment.PersonalFragment;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.IOException;
 
@@ -41,6 +45,33 @@ public class RegisterActivity extends AppCompatActivity {
         String usersname = et_usersname.getText().toString();
         String pwd = et_pwd.getText().toString();
         String url="http://169.254.138.146:8089/MobileShop/member/login2";
+
+        OkHttpUtils
+                .post()
+                .url(url)
+                .addParams("input", usersname)
+                .addParams("password", pwd)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        //失败
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        Gson gson = new Gson();
+                        LoginResponse response1 = gson.fromJson(response, LoginResponse.class);
+                        if (response1.getStatus()==0){
+                            Toast.makeText(RegisterActivity.this,"登陆成功",Toast.LENGTH_SHORT).show();
+                            SpTools.putBoolean("isLogni",true);
+                            finish();
+                        }else {
+                            Toast.makeText(RegisterActivity.this,response1.getStatus(),Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
 
         //OkHttpClient build = new OkHttpClient.Builder().build();
         
@@ -122,4 +153,5 @@ public class RegisterActivity extends AppCompatActivity {
 */
 
     }
+
 }
