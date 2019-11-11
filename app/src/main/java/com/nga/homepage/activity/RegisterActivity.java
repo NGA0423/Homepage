@@ -153,5 +153,8 @@ public class RegisterActivity extends AppCompatActivity {
 */
 
     }
-
+    @OnClick(R.id.tv_register)
+    void Register(){
+        startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+    }
 }
