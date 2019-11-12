@@ -21,8 +21,8 @@
         </activity>
         <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.AdActivity"></activity>
+        <activity android:name=".activity.LonginActivity"/>
         <activity android:name=".activity.RegisterActivity"/>
-        <activity android:name=".activity.LoginActivity"/>
     </application>
 
 </manifest>

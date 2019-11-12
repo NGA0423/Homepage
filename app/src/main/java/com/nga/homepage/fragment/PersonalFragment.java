@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 
 import com.nga.homepage.R;
-import com.nga.homepage.activity.RegisterActivity;
+import com.nga.homepage.activity.LonginActivity;
 import com.nga.homepage.bean.SpTools;
 
 import butterknife.BindView;
@@ -53,7 +53,7 @@ public class PersonalFragment extends Fragment {
             onResume();
             //做退出登录操作
         }else{
-            startActivity(new Intent(getActivity(), RegisterActivity.class));
+            startActivity(new Intent(getActivity(), LonginActivity.class));
         }
 
     }
