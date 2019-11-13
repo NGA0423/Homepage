@@ -35,7 +35,7 @@ public class LonginActivity extends AppCompatActivity {
     void login(){
         String usersname = et_usersname.getText().toString();
         String pwd = et_pwd.getText().toString();
-        String url="http://169.254.138.146:8089/MobileShop/member/login2";
+        String url="http://10.10.16.23:8088/MobileShop/member/login2";
 
         OkHttpUtils
                 .post()
@@ -146,6 +146,6 @@ public class LonginActivity extends AppCompatActivity {
     }
     @OnClick(R.id.tv_register)
     void Register(){
-       finish();
+       startActivity(new Intent(LonginActivity.this,RegisterActivity.class));
     }
 }

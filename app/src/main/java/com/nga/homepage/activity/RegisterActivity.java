@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email=ed_email.getText().toString();
         String passworld1 = ed_password1.getText().toString();
         String passworld2 = ed_password2.getText().toString();
-        String url="";
+        String url="http://10.10.16.23:8088/MobileShop/member";
         if (TextUtils.isEmpty(uname)){
             Toast.makeText(this,"请输入用户名",Toast.LENGTH_SHORT).show();
         }
