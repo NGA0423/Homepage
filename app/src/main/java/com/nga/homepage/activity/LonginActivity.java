@@ -146,6 +146,6 @@ public class LonginActivity extends AppCompatActivity {
     }
     @OnClick(R.id.tv_register)
     void Register(){
-        startActivity(new Intent(LonginActivity.this,RegisterActivity.class));
+       finish();
     }
 }

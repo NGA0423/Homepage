@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -29,7 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText ed_password2;
     @BindView(R.id.ed_uname)
     EditText ed_uname;
-    private String password;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,51 +37,62 @@ public class RegisterActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
     }
-    private String setpassword(){
-        String passwpod1=ed_password1.getText().toString();
-        String passwpod2=ed_password2.getText().toString();
-        if (passwpod1==passwpod2){
-            password =passwpod1;
-        }
-        else {
-            password=null;
-        }
-        return password;
-    }
+
     @OnClick(R.id.tv_register)
     void register(){
         String uname=ed_uname.getText().toString();
         String email=ed_email.getText().toString();
+        String passworld1 = ed_password1.getText().toString();
+        String passworld2 = ed_password2.getText().toString();
         String url="";
+        if (TextUtils.isEmpty(uname)){
+            Toast.makeText(this,"请输入用户名",Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(email)){
+            Toast.makeText(this,"请输入邮箱",Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(passworld1)){
+            Toast.makeText(this,"请输入密码",Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(passworld2)){
+            Toast.makeText(this,"请输入确认密码",Toast.LENGTH_SHORT).show();
+        }
+
         OkHttpUtils
                 .post()
                 .url(url)
                 .addParams("uname", uname)
                 .addParams("email",email)
-                .addParams("password", password)
+                .addParams("password", passworld2)
                 .build()
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         //失败
+                        Toast.makeText(RegisterActivity.this,"注册失败"+e.getMessage(),Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         Gson gson = new Gson();
                         RegisterResponse response1 = gson.fromJson(response, RegisterResponse.class);
-                        if (response1.getStatus()==0){
-                            Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_LONG);
+                        if (response1!=null&&response1.getStatus()==0){
+                            Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                             //Toast.makeText(LonginActivity.this,"登陆成功",Toast.LENGTH_SHORT).show();
                             SpTools.putBoolean("isLogni",true);
                             finish();
                         }else {
+                            Toast.makeText(RegisterActivity.this,"注册失败"+response1.getMsg(),Toast.LENGTH_SHORT).show();
                             //Toast.makeText(LonginActivity.this,response1.getStatus(),Toast.LENGTH_SHORT).show();
                             //Toast.makeText(RegisterActivity.this,response1,Toast.LENGTH_LONG);
                         }
                     }
                 });
 
+    }
+    @OnClick(R.id.im_back)
+    void back(){
+        finish();
     }
 
 }
