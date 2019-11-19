@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nga.homepage.R;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,11 +33,12 @@ public class AdActivity extends AppCompatActivity {
         //绑定activi
         ButterKnife.bind(AdActivity.this);
 
-        Glide.with(this)
-                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574143415107&di=73a4438035ba12462174ad59f519f497&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fitbbs%2F1308%2F27%2Fc10%2F24963658_1377592533297_mthumb.jpg")
+        ImageLoader.getInstance().displayImage("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574739843&di=0d4d5fda20cba0928b17ccf7293ec5e6&imgtype=jpg&er=1&src=http%3A%2F%2Fphotocdn.sohu.com%2F20150320%2Fmp7168150_1426841001024_3.gif",im_ad);
+        /*Glide.with(this)
+                .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1574144421707&di=234d94a7675097f2344da9f12a6257bb&imgtype=0&src=http%3A%2F%2Fs6.sinaimg.cn%2Fmiddle%2F627ba38fga7f1056753a5%26690")
                 .placeholder(R.mipmap.login)
                 .error(R.mipmap.error)
-                .into(im_ad);
+                .into(im_ad);*/
 
         tv_acount.setOnClickListener(new View.OnClickListener() {
             @Override
