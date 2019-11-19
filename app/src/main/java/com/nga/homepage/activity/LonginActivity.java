@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -47,6 +48,8 @@ public class LonginActivity extends AppCompatActivity {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         //失败
+                        Log.d("LonginActivity",e.getMessage());
+                        Log.d("LonginActivity","运行了onError 报错了");
                     }
 
                     @Override
